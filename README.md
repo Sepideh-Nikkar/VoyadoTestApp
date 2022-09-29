@@ -1,7 +1,8 @@
 ## How to build and run the application:
 
-In the terminal, do as following:
+Prerequisites: Visual Studio Code, Npm, Ng
 
+In the terminal, do as following:
 - Run "yarn"
 - Run “ng build”
 - Run “ng serve”
