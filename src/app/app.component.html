@@ -1,0 +1,99 @@
+<div>
+  <h4>
+    Here you can make a search against wikipedia and github search engines and
+    see the total number of search hits from each search engine.
+  </h4>
+  <h5>
+    Limitation:
+    <ul>
+      Empty space (all spaces before/after/between words are omitted). 'Hello
+      World' would have the same result as ' Hello World '
+    </ul>
+  </h5>
+  <form
+    #searchForm="ngForm"
+    (ngSubmit)="submit(searchForm.value)"
+    autocomplete="off"
+  >
+    <div class="form-group">
+      <div>
+        <label for="githubApiToken">Github token: </label>
+        <span style="padding-left: 5px">
+          <input
+            (ngModel)="(githubApiToken)"
+            name="githubApiToken"
+            required
+            placeholder="type in.."
+          />
+        </span>
+      </div>
+      <br />
+      <div>
+        <label for="keyword">Keyword: </label>
+
+        <span style="padding-left: 30px">
+          <input
+            (ngModel)="(keyword)"
+            name="keyword"
+            required
+            placeholder="Search.."
+          />
+        </span>
+
+        <span
+          (mouseenter)="mouseoverSubmit = true"
+          (mouseleave)="mouseoverSubmit = false"
+        >
+        </span>
+        <button
+          type="submit"
+          style="display: inline"
+          [disabled]="!searchForm.controls['keyword'].valid || formSubmitted"
+        >
+          Submit
+        </button>
+      </div>
+      <em
+        style="
+          color: #ff0000;
+          position: relative;
+          position: 22px;
+          display: inline;
+          padding-left: 100px;
+        "
+        *ngIf="
+          searchForm.controls['keyword']?.invalid &&
+          (searchForm.controls['keyword']?.touched || mouseoverSubmit)
+        "
+      >
+        Required
+      </em>
+    </div>
+    <hr />
+    <div>
+      <div *ngIf="keywordLengthWithoutSpace == 0">
+        <div style="color: red">
+          Keyword validation failed! Try another keyword.
+        </div>
+      </div>
+    </div>
+    <div *ngIf="formSubmitted">Searching...</div>
+    <div *ngIf="response != undefined && !formSubmitted">
+      <div>Here is search result for: "{{ keyword }}"</div>
+      <table>
+        <tr>
+          <td style="font-weight: bold">Wikipedia:</td>
+          <td *ngIf="isWikiResponseOk == true">{{ hitsOnWiki }}</td>
+          <td *ngIf="isWikiResponseOk == false" style="color: red">Failed!</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold">Github:</td>
+          <td *ngIf="isGithubResponseOk == true">{{ hitsOnGithub }}</td>
+          <td *ngIf="isGithubResponseOk == false" style="color: red">
+            Failed!
+          </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div>
