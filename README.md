@@ -1,6 +1,6 @@
 ## How to build and run the application:
 
-Prerequisites: Visual Studio Code, npm, ng
+Prerequisites: Visual Studio Code, yarn, ng
 
 - Clone the application or download it as zip file.
 - In the terminal, do as following:
