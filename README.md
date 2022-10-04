@@ -2,7 +2,7 @@
 
 Prerequisites: Visual Studio Code, yarn, ng
 
-- Clone the application or download it as zip file.
+- Clone the application or download it as ZIP file.
 - In the terminal, do as following:
   - Run "yarn"
   - Run “ng build”
